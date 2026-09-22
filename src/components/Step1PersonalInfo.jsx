@@ -6,7 +6,7 @@ export default function Step1PersonalInfo({ onNext }) {
   const {
     register,
     trigger,
-    formState: { errors, touchedFields },
+    formState: { errors },
     watch,
   } = useFormContext();
 
@@ -14,7 +14,6 @@ export default function Step1PersonalInfo({ onNext }) {
   const lastName = watch('lastName');
   const dob = watch('dob');
 
-  // Check if step 1 inputs have any values and are error-free
   const isStep1Valid =
     Boolean(firstName && firstName.trim().length >= 2) &&
     Boolean(lastName && lastName.trim().length >= 2) &&
@@ -60,8 +59,8 @@ export default function Step1PersonalInfo({ onNext }) {
           </div>
           {errors.firstName && (
             <p id="firstName-error" className="error-text">
-              <AlertCircle className="w-3.5 h-3.5 inline mr-1" />
-              {errors.firstName.message}
+              <AlertCircle className="error-icon" />
+              <span>{errors.firstName.message}</span>
             </p>
           )}
         </div>
@@ -87,8 +86,8 @@ export default function Step1PersonalInfo({ onNext }) {
           </div>
           {errors.lastName && (
             <p id="lastName-error" className="error-text">
-              <AlertCircle className="w-3.5 h-3.5 inline mr-1" />
-              {errors.lastName.message}
+              <AlertCircle className="error-icon" />
+              <span>{errors.lastName.message}</span>
             </p>
           )}
         </div>
@@ -113,15 +112,15 @@ export default function Step1PersonalInfo({ onNext }) {
           </div>
           {errors.dob && (
             <p id="dob-error" className="error-text">
-              <AlertCircle className="w-3.5 h-3.5 inline mr-1" />
-              {errors.dob.message}
+              <AlertCircle className="error-icon" />
+              <span>{errors.dob.message}</span>
             </p>
           )}
         </div>
       </div>
 
       {/* Button Action Bar */}
-      <div className="btn-group-footer">
+      <div className="btn-group-footer justify-end">
         <button
           type="button"
           disabled={!isStep1Valid}
@@ -129,7 +128,7 @@ export default function Step1PersonalInfo({ onNext }) {
           className={`btn-primary ${!isStep1Valid ? 'btn-disabled' : ''}`}
         >
           <span>Next Step</span>
-          <ArrowRight className="w-4 h-4 ml-2" />
+          <ArrowRight className="btn-action-icon ml-gap" />
         </button>
       </div>
     </div>

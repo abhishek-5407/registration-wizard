@@ -2,16 +2,16 @@ import React from 'react';
 import { User, ShieldCheck, FileCheck, Check } from 'lucide-react';
 
 const steps = [
-  { id: 1, title: 'Personal Info', subtitle: 'Basic identity details', icon: User },
-  { id: 2, title: 'Account Details', subtitle: 'Credentials & security', icon: ShieldCheck },
-  { id: 3, title: 'Review & Submit', subtitle: 'Confirm registration', icon: FileCheck },
+  { id: 1, title: 'Personal Info', icon: User },
+  { id: 2, title: 'Account Details', icon: ShieldCheck },
+  { id: 3, title: 'Review & Submit', icon: FileCheck },
 ];
 
 export default function ProgressBar({ currentStep, onStepClick }) {
   const percentage = ((currentStep - 1) / (steps.length - 1)) * 100;
 
   return (
-    <nav aria-label="Registration Progress" className="w-full mb-8">
+    <nav aria-label="Registration Progress" className="progress-nav-container">
       {/* Step Info Header */}
       <div className="progress-header">
         <div>
@@ -54,9 +54,9 @@ export default function ProgressBar({ currentStep, onStepClick }) {
               >
                 <div className="step-node-icon-box">
                   {isCompleted ? (
-                    <Check className="w-4 h-4 stroke-[3]" />
+                    <Check className="step-check-icon" />
                   ) : (
-                    <Icon className="w-4 h-4" />
+                    <Icon className="step-node-icon" />
                   )}
                 </div>
                 <div className="step-node-label">

@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { useFormContext } from 'react-hook-form';
-import { Mail, Lock, Eye, EyeOff, ArrowLeft, ArrowRight, AlertCircle, ShieldCheck } from 'lucide-react';
+import { Mail, Lock, Eye, EyeOff, ArrowLeft, ArrowRight, AlertCircle } from 'lucide-react';
 
 export default function Step2AccountDetails({ onNext, onBack }) {
   const [showPassword, setShowPassword] = useState(false);
@@ -17,9 +17,8 @@ export default function Step2AccountDetails({ onNext, onBack }) {
   const password = watch('password') || '';
   const confirmPassword = watch('confirmPassword') || '';
 
-  // Calculate password strength score (0 to 3)
   const getPasswordStrength = (pass) => {
-    if (!pass) return { score: 0, label: '', color: '' };
+    if (!pass) return { score: 0, label: '', class: '' };
     let score = 0;
     if (pass.length >= 8) score += 1;
     if (/[A-Z]/.test(pass) && /[0-9]/.test(pass)) score += 1;
@@ -83,13 +82,13 @@ export default function Step2AccountDetails({ onNext, onBack }) {
           </div>
           {errors.email ? (
             <p id="email-error" className="error-text">
-              <AlertCircle className="w-3.5 h-3.5 inline mr-1" />
-              {errors.email.message}
+              <AlertCircle className="error-icon" />
+              <span>{errors.email.message}</span>
             </p>
           ) : !isEmailValid && email ? (
             <p className="error-text">
-              <AlertCircle className="w-3.5 h-3.5 inline mr-1" />
-              Please enter a valid email address (must include '@' and domain).
+              <AlertCircle className="error-icon" />
+              <span>Please enter a valid email address (must include '@' and domain).</span>
             </p>
           ) : null}
         </div>
@@ -115,7 +114,6 @@ export default function Step2AccountDetails({ onNext, onBack }) {
               aria-invalid={Boolean(errors.password)}
               aria-describedby={errors.password ? 'password-error' : undefined}
             />
-            {/* Show / Hide Toggle Button */}
             <button
               type="button"
               className="toggle-eye-btn"
@@ -123,7 +121,7 @@ export default function Step2AccountDetails({ onNext, onBack }) {
               aria-label={showPassword ? 'Hide password' : 'Show password'}
               title={showPassword ? 'Hide password' : 'Show password'}
             >
-              {showPassword ? <EyeOff className="w-4 h-4" /> : <Eye className="w-4 h-4" />}
+              {showPassword ? <EyeOff className="toggle-eye-icon" /> : <Eye className="toggle-eye-icon" />}
             </button>
           </div>
 
@@ -144,8 +142,8 @@ export default function Step2AccountDetails({ onNext, onBack }) {
 
           {errors.password && (
             <p id="password-error" className="error-text">
-              <AlertCircle className="w-3.5 h-3.5 inline mr-1" />
-              {errors.password.message}
+              <AlertCircle className="error-icon" />
+              <span>{errors.password.message}</span>
             </p>
           )}
         </div>
@@ -174,19 +172,19 @@ export default function Step2AccountDetails({ onNext, onBack }) {
               onClick={() => setShowConfirmPassword(!showConfirmPassword)}
               aria-label={showConfirmPassword ? 'Hide confirm password' : 'Show confirm password'}
             >
-              {showConfirmPassword ? <EyeOff className="w-4 h-4" /> : <Eye className="w-4 h-4" />}
+              {showConfirmPassword ? <EyeOff className="toggle-eye-icon" /> : <Eye className="toggle-eye-icon" />}
             </button>
           </div>
 
           {errors.confirmPassword ? (
             <p id="confirmPassword-error" className="error-text">
-              <AlertCircle className="w-3.5 h-3.5 inline mr-1" />
-              {errors.confirmPassword.message}
+              <AlertCircle className="error-icon" />
+              <span>{errors.confirmPassword.message}</span>
             </p>
           ) : !isConfirmValid && confirmPassword ? (
             <p className="error-text">
-              <AlertCircle className="w-3.5 h-3.5 inline mr-1" />
-              Passwords do not match.
+              <AlertCircle className="error-icon" />
+              <span>Passwords do not match.</span>
             </p>
           ) : null}
         </div>
@@ -199,7 +197,7 @@ export default function Step2AccountDetails({ onNext, onBack }) {
           onClick={onBack}
           className="btn-secondary"
         >
-          <ArrowLeft className="w-4 h-4 mr-2" />
+          <ArrowLeft className="btn-action-icon mr-gap" />
           <span>Back</span>
         </button>
 
@@ -210,7 +208,7 @@ export default function Step2AccountDetails({ onNext, onBack }) {
           className={`btn-primary ${!isStep2Valid ? 'btn-disabled' : ''}`}
         >
           <span>Next Step</span>
-          <ArrowRight className="w-4 h-4 ml-2" />
+          <ArrowRight className="btn-action-icon ml-gap" />
         </button>
       </div>
     </div>

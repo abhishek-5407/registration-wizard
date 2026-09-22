@@ -19,8 +19,8 @@ export default function Step3Review({ onBack, onJumpToStep, onSubmit }) {
         {/* Personal Details Summary Box */}
         <div className="summary-box">
           <div className="summary-box-header">
-            <div className="flex items-center gap-2">
-              <User className="w-4 h-4 text-indigo-400" />
+            <div className="summary-header-left">
+              <User className="summary-header-icon icon-indigo" />
               <h4 className="summary-box-title">Personal Information</h4>
             </div>
             <button
@@ -29,7 +29,7 @@ export default function Step3Review({ onBack, onJumpToStep, onSubmit }) {
               className="btn-edit-link"
               title="Edit Personal Info"
             >
-              <Edit3 className="w-3.5 h-3.5" />
+              <Edit3 className="edit-icon" />
               <span>Edit</span>
             </button>
           </div>
@@ -41,9 +41,9 @@ export default function Step3Review({ onBack, onJumpToStep, onSubmit }) {
             </div>
             <div className="summary-field-row">
               <span className="field-label">Date of Birth</span>
-              <span className="field-value flex items-center gap-1.5">
-                <Calendar className="w-3.5 h-3.5 text-slate-400" />
-                {data.dob}
+              <span className="field-value-with-icon">
+                <Calendar className="field-inline-icon text-muted-icon" />
+                <span>{data.dob}</span>
               </span>
             </div>
           </div>
@@ -52,8 +52,8 @@ export default function Step3Review({ onBack, onJumpToStep, onSubmit }) {
         {/* Account Details Summary Box */}
         <div className="summary-box">
           <div className="summary-box-header">
-            <div className="flex items-center gap-2">
-              <Shield className="w-4 h-4 text-emerald-400" />
+            <div className="summary-header-left">
+              <Shield className="summary-header-icon icon-emerald" />
               <h4 className="summary-box-title">Account Credentials</h4>
             </div>
             <button
@@ -62,7 +62,7 @@ export default function Step3Review({ onBack, onJumpToStep, onSubmit }) {
               className="btn-edit-link"
               title="Edit Account Details"
             >
-              <Edit3 className="w-3.5 h-3.5" />
+              <Edit3 className="edit-icon" />
               <span>Edit</span>
             </button>
           </div>
@@ -70,14 +70,14 @@ export default function Step3Review({ onBack, onJumpToStep, onSubmit }) {
           <div className="summary-fields-list">
             <div className="summary-field-row">
               <span className="field-label">Email Address</span>
-              <span className="field-value flex items-center gap-1.5 text-indigo-300 font-medium">
-                <Mail className="w-3.5 h-3.5 text-slate-400" />
-                {data.email}
+              <span className="field-value-with-icon text-indigo-highlight">
+                <Mail className="field-inline-icon text-muted-icon" />
+                <span>{data.email}</span>
               </span>
             </div>
             <div className="summary-field-row">
               <span className="field-label">Password</span>
-              <span className="field-value font-mono text-slate-400 tracking-widest">
+              <span className="field-value font-mono-password">
                 {maskedPassword}
               </span>
             </div>
@@ -92,7 +92,7 @@ export default function Step3Review({ onBack, onJumpToStep, onSubmit }) {
           onClick={onBack}
           className="btn-secondary"
         >
-          <ArrowLeft className="w-4 h-4 mr-2" />
+          <ArrowLeft className="btn-action-icon" />
           <span>Back</span>
         </button>
 
@@ -102,7 +102,7 @@ export default function Step3Review({ onBack, onJumpToStep, onSubmit }) {
           className="btn-submit"
         >
           <span>Submit Registration</span>
-          <Send className="w-4 h-4 ml-2" />
+          <Send className="btn-action-icon ml-gap" />
         </button>
       </div>
     </div>
